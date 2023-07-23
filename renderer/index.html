@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'"/>
+
     <title>PDF Merger</title>
 
     <link rel="stylesheet" href="./style.css" />
@@ -33,8 +35,20 @@
             <p class="last-page">5</p>
           </div>
         </div>
+
+        <div class="button-container">
+          <div class="add-remove-buttons">
+            <button>Add Files</button>
+            <button>Remove Files</button>
+          </div>
+          <button>MERGE</button>
+        </div>
       </div>
     </main>
+
+    <footer>
+      <p class="copyright">© 2023 Arijeet De</p>
+    </footer>
 
     <script src="./draggable.js"></script>
   </body>
