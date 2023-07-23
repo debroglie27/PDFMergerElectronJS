@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Merger</title>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>PDF Merger</h1>
+      <div class="main-content">
+        <div class="table-container">
+          <div class="row-container row-header">
+            <p class="serial-num">SL No.</p>
+            <p class="pdf-name">PDF Name</p>
+            <p class="first-page">First Page</p>
+            <p class="last-page">Last Page</p>
+          </div>
+
+          <div class="row-container row-item draggable" draggable="true">
+            <p class="serial-num">1</p>
+            <p class="pdf-name">Random PDF-1</p>
+            <p class="first-page">1</p>
+            <p class="last-page">7</p>
+          </div>
+
+          <div class="row-container row-item draggable" draggable="true">
+            <p class="serial-num">2</p>
+            <p class="pdf-name">Random PDF-2</p>
+            <p class="first-page">2</p>
+            <p class="last-page">5</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="./draggable.js"></script>
+  </body>
+</html>
