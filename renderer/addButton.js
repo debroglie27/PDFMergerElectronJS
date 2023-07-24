@@ -1,3 +1,5 @@
+import { createRecord } from './createRecord.js';
+
 const addButton = document.querySelector('.add-button');
 
 let fileObjects = [];
@@ -32,45 +34,6 @@ ipcRenderer.on("pdf:pageobject", (pdfPageObject) => {
     }
 
     newFileObjects.forEach( (newFileObject) => {
-        createRowRecord(newFileObject);
+        createRecord(newFileObject);
     });
 });
-
-
-function createRowRecord(newRecord) {
-    const rowContainer = document.createElement('div');
-    rowContainer.classList.add("row-container", "row-item", "draggable");
-    rowContainer.draggable = "true";
-
-    const serialNum = document.createElement('p');
-    serialNum.classList.add('serial-num');
-    serialNum.textContent = '1';
-
-    const pdfName = document.createElement('p');
-    pdfName.classList.add('pdf-name');
-    pdfName.textContent = newRecord.fileName;
-
-    const firstPage = document.createElement('p');
-    firstPage.classList.add('first-page');
-    firstPage.textContent = newRecord.firstPage;
-
-    const lastPage = document.createElement('p');
-    lastPage.classList.add('last-page');
-    lastPage.textContent = newRecord.lastPage;
-
-    rowContainer.appendChild(serialNum);
-    rowContainer.appendChild(pdfName);
-    rowContainer.appendChild(firstPage);
-    rowContainer.appendChild(lastPage);
-
-    const tableContainer = document.querySelector('.table-container');
-    tableContainer.appendChild(rowContainer);
-}
-
-
-{/* <div class="row-container row-item draggable" draggable="true">
-    <p class="serial-num">2</p>
-    <p class="pdf-name">Random PDF-2</p>
-    <p class="first-page">2</p>
-    <p class="last-page">5</p>
-</div> */}

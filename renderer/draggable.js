@@ -1,15 +1,4 @@
-const draggables = document.querySelectorAll('.draggable');
 const tableContainer = document.querySelector('.table-container');
-
-draggables.forEach(draggable => {
-    draggable.addEventListener('dragstart', () => {
-        draggable.classList.add('dragging');
-    });
-
-    draggable.addEventListener('dragend', () => {
-        draggable.classList.remove('dragging');
-    });
-});
 
 tableContainer.addEventListener('dragover', (event) => {
     event.preventDefault();
