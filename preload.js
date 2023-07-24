@@ -4,7 +4,8 @@ const Toastify = require('toastify-js');
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('path', {
-    join: (...args) => path.join(...args),
+    basename: (...args) => path.basename(...args),
+    parse: (...args) => path.parse(...args),
 });
 
 contextBridge.exposeInMainWorld('Toastify', {
