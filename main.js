@@ -1,37 +1,8 @@
-// const { PDFDocument} = require("pdf-lib");
-// const { readFileSync } = require("fs");
-
-// async function getNumPages() {
-//   const pdfPath = "D:\\Semesters\\Semester_VIII\\MIDSEM_Exam_Prog.pdf";
-//   const document = await PDFDocument.load(readFileSync(pdfPath));
-//   const totalPages = document.getPageCount();
-//   console.log(totalPages);
-// }
-
-// getNumPages();
-
-
-
-// const PDFMerger = require('pdf-merger-js');
-
-// var merger = new PDFMerger();
-
-// (async () => {
-//   await merger.add('D:\\Semesters\\Semester_VIII\\MIDSEM_Exam_Prog.pdf');  //merge all pages. parameter is the path to file and filename.
-//   await merger.add('D:\\Semesters\\Semester_VIII\\MIDSEM_Exam_Prog.pdf'); // merge only page 2
-//   await merger.save('merged.pdf'); //save under given name and reset the internal document
-  
-//   // Export the merged PDF as a nodejs Buffer
-//   // const mergedPdfBuffer = await merger.saveAsBuffer();
-//   // fs.writeSync('merged.pdf', mergedPdfBuffer);
-// })();
-
-
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const { readFileSync } = require("fs");
+const { PDFDocument } = require("pdf-lib");
 
-const {app, BrowserWindow, Menu, ipcMain, shell} = require('electron');
-
-const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';
 
 let mainWindow;
@@ -40,8 +11,8 @@ let mainWindow;
 function createMainWindow() {
     mainWindow = new BrowserWindow({
         title: 'Image Resizer',
-        width: isDev ? 1200 : 700,
-        // width: 500,
+        width: 1200,
+        // width: 700,
         height: 600,
         webPreferences: {
             contextIsolation: true,
@@ -49,11 +20,6 @@ function createMainWindow() {
             preload: path.join(__dirname, 'preload.js')
         }
     });
-
-    // Open devtools if in dev env
-    if (isDev) {
-        mainWindow.webContents.openDevTools();
-    }
 
     mainWindow.loadFile(path.join(__dirname, './renderer/index.html'));
 }
@@ -76,9 +42,44 @@ app.whenReady().then(() => {
   });
 });
 
+
+// respond to ipcRenderer filepaths
+ipcMain.on('pdf:filepaths', (event, filePaths) => {
+    generatePageObject(filePaths);
+});
+
+
+async function generatePageObject(filePaths) {
+    let pdfPageObject = []
+
+    for (let i=0; i<filePaths.length; i++) {
+        const pdfDocument =  await PDFDocument.load(readFileSync(filePaths[i]));
+        pdfPageObject.push({firstPage: 1, lastPage: pdfDocument.getPageCount()});
+    }
+    
+    // Send pageObject to renderer
+    mainWindow.webContents.send("pdf:pageobject", pdfPageObject);
+}
+
+
 // App closed
 app.on('window-all-closed', () => {
   if (!isMac) {
       app.quit();
   }
 });
+
+
+// const PDFMerger = require('pdf-merger-js');
+
+// var merger = new PDFMerger();
+
+// (async () => {
+//   await merger.add('D:\\Semesters\\Semester_VIII\\MIDSEM_Exam_Prog.pdf');  //merge all pages. parameter is the path to file and filename.
+//   await merger.add('D:\\Semesters\\Semester_VIII\\MIDSEM_Exam_Prog.pdf'); // merge only page 2
+//   await merger.save('merged.pdf'); //save under given name and reset the internal document
+  
+//   // Export the merged PDF as a nodejs Buffer
+//   // const mergedPdfBuffer = await merger.saveAsBuffer();
+//   // fs.writeSync('merged.pdf', mergedPdfBuffer);
+// })();
