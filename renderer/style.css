@@ -33,7 +33,7 @@ h1 {
 
 .table-container {
     background-color: white;
-    border: 2px solid black;
+    border: 2px solid rgb(255, 128, 49);
     width: 650px;
     min-height: 200px;
     max-height: 300px;
@@ -52,8 +52,8 @@ h1 {
 }
 
 .row-container {
-    border-top: 1px solid #555555;
-    border-bottom: 1px solid #555555;
+    border-top: 1px solid rgb(255, 128, 49);
+    border-bottom: 1px solid rgb(255, 128, 49);
     width: 100%;
     display: flex;
     align-items: center;
@@ -77,14 +77,14 @@ h1 {
 }
 
 .row-container .pdf-name {
-    border-left: 1px solid #555555;
-    border-right: 1px solid #555555;
+    border-left: 1px solid rgb(255, 128, 49);
+    border-right: 1px solid rgb(255, 128, 49);
     flex-basis: 54%;
     padding: 10px 5px;
 }
 
 .row-container .first-page {
-    border-right: 1px solid #555555;
+    border-right: 1px solid rgb(255, 128, 49);
     flex-basis: 18%;
 }
 
@@ -136,7 +136,7 @@ button {
 
 
 .copyright {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-bottom: 2px;
 }
 
