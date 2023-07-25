@@ -19,7 +19,8 @@ function createMainWindow() {
             contextIsolation: true,
             nodeIntegration: true,
             preload: path.join(__dirname, 'preload.js')
-        }
+        },
+        autoHideMenuBar: true,
     });
 
     mainWindow.loadFile(path.join(__dirname, './renderer/index.html'));
