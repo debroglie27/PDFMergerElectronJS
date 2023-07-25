@@ -1,4 +1,16 @@
+export { dragStart, dragEnd };
+
 const tableContainer = document.querySelector('.table-container');
+
+
+function dragStart (event) {
+    event.target.classList.add('dragging');
+}
+
+function dragEnd (event) {
+    event.target.classList.remove('dragging');
+}
+
 
 tableContainer.addEventListener('dragover', (event) => {
     event.preventDefault();
@@ -12,6 +24,7 @@ tableContainer.addEventListener('dragover', (event) => {
         tableContainer.insertBefore(draggingItem, afterElement);
     }
 });
+
 
 function getDragAfterElement(cursorY) {
     const draggableElements = [...tableContainer.querySelectorAll('.draggable:not(.dragging)')];

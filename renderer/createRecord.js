@@ -1,3 +1,5 @@
+import { dragStart, dragEnd } from './draggable.js'
+
 export {createRecord};
 
 function createRecord(newRecord) {
@@ -5,12 +7,8 @@ function createRecord(newRecord) {
     rowContainer.classList.add("row-container", "row-item", "draggable");
     rowContainer.draggable = "true";
 
-    rowContainer.addEventListener('dragstart', (event) => {
-        event.target.classList.add('dragging');
-    });
-    rowContainer.addEventListener('dragend', (event) => {
-        event.target.classList.remove('dragging');
-    });
+    rowContainer.addEventListener('dragstart', dragStart);
+    rowContainer.addEventListener('dragend', dragEnd);
 
     const serialNum = document.createElement('p');
     serialNum.classList.add('serial-num');
