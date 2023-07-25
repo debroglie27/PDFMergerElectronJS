@@ -1,7 +1,9 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const os = require('os');
 const path = require('path');
-const { readFileSync } = require("fs");
+const { readFileSync, writeFileSync } = require("fs");
 const { PDFDocument } = require("pdf-lib");
+const PDFMerger = require('pdf-merger-js');
 
 const isMac = process.platform === 'darwin';
 
@@ -48,6 +50,11 @@ ipcMain.on('pdf:filepaths', (event, filePaths) => {
     generatePageObject(filePaths);
 });
 
+// respond to ipcRenderer merge
+ipcMain.on('pdf:merge', (event, fileObjects) => {
+    mergeFileObjects(fileObjects);
+});
+
 
 async function generatePageObject(filePaths) {
     let pdfPageObject = []
@@ -62,24 +69,35 @@ async function generatePageObject(filePaths) {
 }
 
 
+async function mergeFileObjects(fileObjects) {
+    let merger = new PDFMerger();
+
+    for (let i = 0; i < fileObjects.length; i++) {
+        await merger.add(fileObjects[i].filePath);
+    }
+    
+    // Export the merged PDF as a nodejs Buffer
+    const mergedPdfBuffer = await merger.saveAsBuffer();
+
+    // Save Options for save dialog box
+    let saveOptions = {
+        title: 'Save Merged File - PDF Merger',
+        defaultPath: path.join(os.homedir(), 'Merged-File.pdf'),
+        filters : [
+            {name: 'PDF File', extensions: ['*.pdf']}
+        ],
+    };
+
+    // Collecting Save Information
+    saveInfo = await dialog.showSaveDialog(BrowserWindow.getFocusedWindow(), saveOptions);
+
+    writeFileSync(saveInfo.filePath, mergedPdfBuffer);
+}
+
+
 // App closed
 app.on('window-all-closed', () => {
   if (!isMac) {
       app.quit();
   }
 });
-
-
-// const PDFMerger = require('pdf-merger-js');
-
-// var merger = new PDFMerger();
-
-// (async () => {
-//   await merger.add('D:\\Semesters\\Semester_VIII\\MIDSEM_Exam_Prog.pdf');  //merge all pages. parameter is the path to file and filename.
-//   await merger.add('D:\\Semesters\\Semester_VIII\\MIDSEM_Exam_Prog.pdf'); // merge only page 2
-//   await merger.save('merged.pdf'); //save under given name and reset the internal document
-  
-//   // Export the merged PDF as a nodejs Buffer
-//   // const mergedPdfBuffer = await merger.saveAsBuffer();
-//   // fs.writeSync('merged.pdf', mergedPdfBuffer);
-// })();
