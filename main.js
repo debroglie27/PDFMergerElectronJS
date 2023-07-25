@@ -91,7 +91,12 @@ async function mergeFileObjects(fileObjects) {
     // Collecting Save Information
     saveInfo = await dialog.showSaveDialog(BrowserWindow.getFocusedWindow(), saveOptions);
 
-    writeFileSync(saveInfo.filePath, mergedPdfBuffer);
+    if (!saveInfo.canceled) {
+        writeFileSync(saveInfo.filePath, mergedPdfBuffer);
+
+        // Send success to renderer
+        mainWindow.webContents.send("pdf:mergesuccess");
+    }
 }
 
 
