@@ -3,6 +3,11 @@ import { fileObjects } from "./fileObjectsLogic.js";
 const mergeButton = document.querySelector('.merge-button');
 
 mergeButton.addEventListener('click', () => {
+    if (fileObjects.length === 0) {
+        alertError('No PDF Files to Merge!');
+        return;
+    }
+
     // Send to main using ipcRenderer
     ipcRenderer.send('pdf:merge', fileObjects);
 });
@@ -18,14 +23,25 @@ ipcRenderer.on("pdf:mergesuccess", () => {
 function alertSuccess(message) {
     Toastify.toast({
         text: message,
-        duration: 3000,
+        duration: 2000,
         close: false,
         style: {
-            width: '100%',
-            background: 'green',
-            color: 'white',
-            textAlign: 'center',
-            padding: '5px',
+            width: '100%', background: 'green', color: 'white', 
+            textAlign: 'center', padding: '5px',
+        }
+    });
+}
+
+
+// For Alerting Success
+function alertError(message) {
+    Toastify.toast({
+        text: message,
+        duration: 2000,
+        close: false,
+        style: {
+            width: '100%', background: 'red', color: 'white',
+            textAlign: 'center', padding: '5px',
         }
     });
 }

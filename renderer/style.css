@@ -1,12 +1,16 @@
 :root {
     --body-bg-color: rgb(255, 248, 240);
+
     --h1-color: rgb(255, 128, 49);
     --table-border-color: rgb(255, 128, 49);
     --row-header-color: rgb(233, 255, 154);
     --highlight-color: rgb(255, 255, 196);
+
     --add-button-color: rgb(3, 151, 3);
     --remove-button-color: rgb(223, 78, 0);
     --merge-button-color: rgb(162, 3, 162);
+
+    --copyright-color: rgb(255, 128, 49);
 }
 
 
@@ -178,6 +182,7 @@ button:hover {
 
 /**************** FOOTER ****************/
 .copyright {
+    color: var(--copyright-color);
     font-size: 0.8rem;
     margin-bottom: 2px;
 }

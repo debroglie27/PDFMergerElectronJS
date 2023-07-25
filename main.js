@@ -13,7 +13,7 @@ let mainWindow;
 function createMainWindow() {
     mainWindow = new BrowserWindow({
         title: 'Image Resizer',
-        width: 740,
+        width: 720,
         height: 620,
         webPreferences: {
             contextIsolation: true,
