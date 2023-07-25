@@ -1,3 +1,15 @@
+:root {
+    --body-bg-color: rgb(255, 248, 240);
+    --h1-color: rgb(255, 128, 49);
+    --table-border-color: rgb(255, 128, 49);
+    --row-header-color: rgb(233, 255, 154);
+    --highlight-color: rgb(255, 255, 196);
+    --add-button-color: rgb(3, 151, 3);
+    --remove-button-color: rgb(223, 78, 0);
+    --merge-button-color: rgb(162, 3, 162);
+}
+
+
 *,
 *::before,
 *::after {
@@ -7,7 +19,7 @@
 }
 
 body {
-    background-color: rgb(255, 248, 240);
+    background-color: var(--body-bg-color);
     font-family: sans-serif;
     width: 100%;
     min-height: 100vh;
@@ -28,12 +40,12 @@ main {
 h1 {
     font-size: 2.1rem;
     margin-bottom: 25px;
-    color: rgb(255, 128, 49);
+    color: var(--h1-color);
 }
 
 .table-container {
     background-color: white;
-    border: 2px solid rgb(255, 128, 49);
+    border: 2px solid var(--table-border-color);
     width: 650px;
     min-height: 200px;
     max-height: 280px;
@@ -46,14 +58,14 @@ h1 {
 }
 
 .row-header {
-    background-color: rgb(233, 255, 154);
+    background-color: var(--row-header-color);
     font-size: 1.05rem;
     font-weight: bold;    
 }
 
 .row-container {
-    border-top: 1px solid rgb(255, 128, 49);
-    border-bottom: 1px solid rgb(255, 128, 49);
+    border-top: 1px solid var(--table-border-color);
+    border-bottom: 1px solid var(--table-border-color);
     width: 100%;
     display: flex;
     align-items: center;
@@ -77,13 +89,13 @@ h1 {
 }
 
 .row-container .pdf-name {
-    border-left: 1px solid rgb(255, 128, 49);
-    border-right: 1px solid rgb(255, 128, 49);
+    border-left: 1px solid var(--table-border-color);
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 54%;
 }
 
 .row-container .first-page {
-    border-right: 1px solid rgb(255, 128, 49);
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 18%;
 }
 
@@ -96,7 +108,7 @@ h1 {
 }
 
 .highlight {
-    background-color: rgb(255, 255, 196);
+    background-color: var(--highlight-color);
 }
 
 
@@ -108,6 +120,7 @@ h1 {
     box-shadow: inset 0 0 5px rgb(0, 0, 0, 0.4);
 }
 
+/**************** BUTTONS *****************/
 .button-container {
     display: flex;
     flex-direction: column;
@@ -126,14 +139,44 @@ h1 {
 button {
     background-color: white;
     border-radius: 5px;
-    width: 140px;
-    padding: 8px 0;
+    width: 120px;
+    padding: 10px 0;
     font-size: 1.02rem;
-    border: 1px solid black;
     cursor: pointer;
 }
 
+button:hover {
+    color: white;
+}
 
+.add-button {
+    border: 2px solid var(--add-button-color);
+    color: var(--add-button-color);
+}
+
+.add-button:hover {
+    background-color: var(--add-button-color);
+}
+
+.remove-button {
+    border: 2px solid var(--remove-button-color);
+    color: var(--remove-button-color);
+}
+
+.remove-button:hover {
+    background-color: var(--remove-button-color);
+}
+
+.merge-button {
+    border: 2px solid var(--merge-button-color);
+    color: var(--merge-button-color);
+}
+
+.merge-button:hover {
+    background-color: var(--merge-button-color);
+}
+
+/**************** FOOTER ****************/
 .copyright {
     font-size: 0.8rem;
     margin-bottom: 2px;
