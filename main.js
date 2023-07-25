@@ -71,10 +71,11 @@ async function generatePageObject(filePaths) {
 async function mergeFileObjects(fileObjects) {
     let merger = new PDFMerger();
 
-    for (let i = 0; i < fileObjects.length; i++) {
-        await merger.add(fileObjects[i].filePath);
+    for ( i in fileObjects) {
+        await merger.add(fileObjects[i].filePath, 
+            `${fileObjects[i].firstPage}-${fileObjects[i].lastPage}`);
     }
-    
+
     // Export the merged PDF as a nodejs Buffer
     const mergedPdfBuffer = await merger.saveAsBuffer();
 

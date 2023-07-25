@@ -1,8 +1,10 @@
-import { fileObjects } from "./fileObjectsLogic.js";
+import { fileObjects, handleFileObjects } from "./fileObjectsLogic.js";
 
 const mergeButton = document.querySelector('.merge-button');
 
 mergeButton.addEventListener('click', () => {
+    handleFileObjects();
+
     if (fileObjects.length === 0) {
         alertError('No PDF Files to Merge!');
         return;
