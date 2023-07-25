@@ -1,3 +1,5 @@
+import { handleSerialNum } from "./handleSerialNum.js";
+
 export { dragStart, dragEnd };
 
 const tableContainer = document.querySelector('.table-container');
@@ -9,6 +11,7 @@ function dragStart (event) {
 
 function dragEnd (event) {
     event.target.classList.remove('dragging');
+    handleSerialNum();
 }
 
 

@@ -1,6 +1,8 @@
 import { dragStart, dragEnd } from './draggable.js'
 
-export {createRecord};
+export {createRecord, nextSerialNum};
+
+let nextSerialNum = 1;
 
 function createRecord(newRecord) {
     const rowContainer = document.createElement('div');
@@ -12,7 +14,9 @@ function createRecord(newRecord) {
 
     const serialNum = document.createElement('p');
     serialNum.classList.add('serial-num');
-    serialNum.textContent = 1;
+    serialNum.textContent = nextSerialNum;
+
+    nextSerialNum += 1;
 
     const pdfName = document.createElement('p');
     pdfName.classList.add('pdf-name');
