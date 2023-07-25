@@ -1,5 +1,5 @@
 import { handleSerialNum } from "./serialNumLogic.js";
-import { fileObjects, handleFileObjects } from "./fileObjectsLogic.js";
+import { handleFileObjects } from "./fileObjectsLogic.js";
 
 export { dragStart, dragEnd };
 
@@ -14,8 +14,6 @@ function dragEnd (event) {
     event.target.classList.remove('dragging');
     handleSerialNum();
     handleFileObjects();
-
-    console.log(fileObjects);
 }
 
 
