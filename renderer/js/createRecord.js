@@ -1,8 +1,13 @@
-import { dragStart, dragEnd } from './draggable.js'
+import { dragStart, dragEnd } from './draggable.js';
+import { toggleHighlight } from './removeButton.js';
 
-export {createRecord, nextSerialNum};
+export {createRecord, nextSerialNum, setNextSerialNum};
 
 let nextSerialNum = 1;
+
+function setNextSerialNum(value) {
+    nextSerialNum = value;
+}
 
 function createRecord(newRecord) {
     const rowContainer = document.createElement('div');
@@ -11,6 +16,7 @@ function createRecord(newRecord) {
 
     rowContainer.addEventListener('dragstart', dragStart);
     rowContainer.addEventListener('dragend', dragEnd);
+    rowContainer.addEventListener('click', toggleHighlight);
 
     const serialNum = document.createElement('p');
     serialNum.classList.add('serial-num');

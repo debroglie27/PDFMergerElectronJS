@@ -1,6 +1,6 @@
 import { nextSerialNum } from "./createRecord.js";
 
-export {handleSerialNum}
+export {handleSerialNum};
 
 function handleSerialNum () {
     const serialNumList = document.querySelectorAll('.serial-num');
