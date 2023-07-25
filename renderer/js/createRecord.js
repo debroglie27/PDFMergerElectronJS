@@ -1,13 +1,9 @@
 import { dragStart, dragEnd } from './draggable.js';
 import { toggleHighlight } from './removeButton.js';
+import { nextSerialNum, setNextSerialNum } from './serialNumLogic.js'
 
-export {createRecord, nextSerialNum, setNextSerialNum};
+export { createRecord };
 
-let nextSerialNum = 1;
-
-function setNextSerialNum(value) {
-    nextSerialNum = value;
-}
 
 function createRecord(newRecord) {
     const rowContainer = document.createElement('div');
@@ -22,7 +18,7 @@ function createRecord(newRecord) {
     serialNum.classList.add('serial-num');
     serialNum.textContent = nextSerialNum;
 
-    nextSerialNum += 1;
+    setNextSerialNum(nextSerialNum + 1);
 
     const pdfName = document.createElement('p');
     pdfName.classList.add('pdf-name');
@@ -36,10 +32,15 @@ function createRecord(newRecord) {
     lastPage.classList.add('last-page');
     lastPage.textContent = newRecord.lastPage;
 
+    const filePath = document.createElement('p');
+    filePath.classList.add('hidden');
+    filePath.textContent = newRecord.filePath;
+
     rowContainer.appendChild(serialNum);
     rowContainer.appendChild(pdfName);
     rowContainer.appendChild(firstPage);
     rowContainer.appendChild(lastPage);
+    rowContainer.appendChild(filePath);
 
     const tableContainer = document.querySelector('.table-container');
     tableContainer.appendChild(rowContainer);

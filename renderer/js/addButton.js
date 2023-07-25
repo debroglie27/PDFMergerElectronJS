@@ -1,9 +1,10 @@
 import { createRecord } from './createRecord.js';
+import { appendFileObjects } from './fileObjectsLogic.js';
 
 const addButton = document.querySelector('.add-button');
 
-let fileObjects = [];
 let filePaths = [];
+
 
 addButton.addEventListener('click', () => {
     let input = document.createElement('input');
@@ -29,7 +30,7 @@ ipcRenderer.on("pdf:pageobject", (pdfPageObject) => {
     let newFileObjects = [];
     for (let i=0; i<filePaths.length; i++) {
         let newFileObject = {fileName: path.parse(path.basename(filePaths[i])).name, filePath: filePaths[i], ...pdfPageObject[i]}
-        fileObjects.push(newFileObject);
+        appendFileObjects(newFileObject);
         newFileObjects.push(newFileObject);
     }
 

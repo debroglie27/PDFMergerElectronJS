@@ -1,5 +1,5 @@
-import { handleSerialNum } from "./handleSerialNum.js";
-import { nextSerialNum, setNextSerialNum } from "./createRecord.js";
+import { nextSerialNum, setNextSerialNum, handleSerialNum } from "./serialNumLogic.js";
+import {handleFileObjects} from './fileObjectsLogic.js'
 
 export { toggleHighlight };
 
@@ -20,7 +20,8 @@ removeButton.addEventListener('click', () => {
     highlightedElements.forEach((element) => {
         element.remove();
         setNextSerialNum(nextSerialNum - 1);
-    })
+    });
 
     handleSerialNum();
+    handleFileObjects();
 });
