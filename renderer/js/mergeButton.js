@@ -10,7 +10,7 @@ mergeButton.addEventListener('click', () => {
 
 // Catch the pdf:pageobject event
 ipcRenderer.on("pdf:mergesuccess", () => {
-    alertSuccess('PDF Successfully Merged!');
+    alertSuccess('PDF Files Successfully Merged!');
 });
 
 
@@ -18,7 +18,7 @@ ipcRenderer.on("pdf:mergesuccess", () => {
 function alertSuccess(message) {
     Toastify.toast({
         text: message,
-        duration: 4000,
+        duration: 3000,
         close: false,
         style: {
             width: '100%',

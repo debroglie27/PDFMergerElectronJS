@@ -36,7 +36,7 @@ h1 {
     border: 2px solid rgb(255, 128, 49);
     width: 650px;
     min-height: 200px;
-    max-height: 300px;
+    max-height: 280px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,7 +80,6 @@ h1 {
     border-left: 1px solid rgb(255, 128, 49);
     border-right: 1px solid rgb(255, 128, 49);
     flex-basis: 54%;
-    padding: 10px 5px;
 }
 
 .row-container .first-page {
@@ -97,7 +96,7 @@ h1 {
 }
 
 .highlight {
-    background-color: rgb(255, 255, 184);
+    background-color: rgb(255, 255, 196);
 }
 
 
