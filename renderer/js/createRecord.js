@@ -1,8 +1,43 @@
 import { dragStart, dragEnd } from './draggable.js';
 import { toggleHighlight } from './removeButton.js';
 import { nextSerialNum, setNextSerialNum } from './serialNumLogic.js'
+import { decreasePageNum, increasePageNum } from './pageContainerButton.js';
 
 export { createRecord };
+
+
+function createPageContainer (type, pageValue) {
+    const pageContainer = document.createElement('div');
+    pageContainer.classList.add(`${type}-page-container`);
+
+    const minusButton = document.createElement('button');
+    minusButton.addEventListener('click', decreasePageNum);
+
+    const minusImg = document.createElement('img');
+    minusImg.src = './images/minus.png';
+    minusImg.alt = 'minus image';
+
+    minusButton.appendChild(minusImg);
+
+    const page = document.createElement('p');
+    page.classList.add(`${type}-page`)
+    page.textContent = pageValue;
+
+    const plusButton = document.createElement('button');
+    plusButton.addEventListener('click', increasePageNum);
+
+    const plusImg = document.createElement('img');
+    plusImg.src = './images/plus.png';
+    plusImg.alt = 'plus image';
+
+    plusButton.appendChild(plusImg);
+
+    pageContainer.appendChild(minusButton);
+    pageContainer.appendChild(page);
+    pageContainer.appendChild(plusButton);
+
+    return pageContainer;
+}
 
 
 function createRecord(newRecord) {
@@ -24,13 +59,9 @@ function createRecord(newRecord) {
     pdfName.classList.add('pdf-name');
     pdfName.textContent = newRecord.fileName;
 
-    const firstPage = document.createElement('p');
-    firstPage.classList.add('first-page');
-    firstPage.textContent = newRecord.firstPage;
+    const firstPageContainer = createPageContainer('first', newRecord.firstPage);
 
-    const lastPage = document.createElement('p');
-    lastPage.classList.add('last-page');
-    lastPage.textContent = newRecord.lastPage;
+    const lastPageContainer = createPageContainer('last', newRecord.lastPage);
 
     const filePath = document.createElement('p');
     filePath.classList.add('hidden');
@@ -38,8 +69,8 @@ function createRecord(newRecord) {
 
     rowContainer.appendChild(serialNum);
     rowContainer.appendChild(pdfName);
-    rowContainer.appendChild(firstPage);
-    rowContainer.appendChild(lastPage);
+    rowContainer.appendChild(firstPageContainer);
+    rowContainer.appendChild(lastPageContainer);
     rowContainer.appendChild(filePath);
 
     const tableContainer = document.querySelector('.table-container');

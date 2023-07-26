@@ -85,16 +85,19 @@ async function mergeFileObjects(fileObjects) {
         title: 'Save Merged File - PDF Merger',
         defaultPath: path.join(os.homedir(), 'Merged-File.pdf'),
         filters : [
-            {name: 'PDF File', extensions: ['*.pdf']}
+            {name: 'PDF Files', extensions: ['*.pdf']}
         ],
     };
 
     // Collecting Save Information
     saveInfo = await dialog.showSaveDialog(BrowserWindow.getFocusedWindow(), saveOptions);
 
-    if (!saveInfo.canceled) {
+    if (saveInfo.canceled) {
+        // Send cancelled to renderer
+        mainWindow.webContents.send("pdf:mergecancelled");
+    }
+    else {
         writeFileSync(saveInfo.filePath, mergedPdfBuffer);
-
         // Send success to renderer
         mainWindow.webContents.send("pdf:mergesuccess");
     }

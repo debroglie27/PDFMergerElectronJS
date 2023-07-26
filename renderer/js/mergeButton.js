@@ -16,7 +16,13 @@ mergeButton.addEventListener('click', () => {
 });
 
 
-// Catch the pdf:pageobject event
+// Catch the pdf:mergesuccess event
 ipcRenderer.on("pdf:mergesuccess", () => {
     alertSuccess('PDF Files Successfully Merged!');
+});
+
+
+// Catch the pdf:mergecancelled event
+ipcRenderer.on("pdf:mergecancelled", () => {
+    fileObjects = [];
 });

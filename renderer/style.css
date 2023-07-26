@@ -80,7 +80,7 @@ h1 {
     cursor: move;
 }
 
-.row-container p:not(.hidden) {
+.row-container > *:not(.hidden) {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -98,14 +98,44 @@ h1 {
     flex-basis: 54%;
 }
 
-.row-container .first-page {
+.row-container .first-page-container {
     border-right: 1px solid var(--table-border-color);
     flex-basis: 18%;
 }
 
-.row-container .last-page {
+.row-container .last-page-container {
     flex-basis: 18%;
 }
+
+.first-page-container, .last-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: default;
+}
+
+.first-page-container button, .last-page-container button {
+    background-color: white;
+    border: none;
+    border-radius: 2px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.first-page-container button:hover, .last-page-container button:hover {
+    background-color: rgb(248, 229, 86);
+}
+
+img {
+    width: 12px;
+}
+
 
 .draggable.dragging {
     opacity: 0.3;
@@ -124,6 +154,7 @@ h1 {
     box-shadow: inset 0 0 5px rgb(0, 0, 0, 0.4);
 }
 
+
 /**************** BUTTONS *****************/
 .button-container {
     display: flex;
@@ -140,7 +171,7 @@ h1 {
     margin-bottom: 30px;
 }
 
-button {
+.button-container button {
     background-color: white;
     border-radius: 5px;
     width: 120px;
@@ -149,7 +180,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.button-container button:hover {
     color: white;
 }
 
