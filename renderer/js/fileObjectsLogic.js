@@ -8,7 +8,7 @@ function handleFileObjects() {
 
     fileObjects = fileRecords.map((item) => {
         return {fileName: item.querySelector('.pdf-name').textContent, 
-            filePath: item.querySelector('.hidden').textContent,
+            filePath: item.querySelector('.file-path').textContent,
             firstPage: item.querySelector('.first-page').textContent,
             lastPage: item.querySelector('.last-page').textContent,
         };
