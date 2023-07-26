@@ -4,7 +4,11 @@
     --h1-color: rgb(255, 128, 49);
     --table-border-color: rgb(255, 128, 49);
     --row-header-color: rgb(233, 255, 154);
-    --highlight-color: rgb(255, 255, 196);
+    --highlight-color: rgb(255, 255, 209);
+    --page-button-hover-color: rgb(248, 229, 86);
+
+    --scrollbar-track-color: rgb(255, 128, 49);
+    --scrollbar-thumb-color: rgb(255, 255, 58);
 
     --add-button-color: rgb(3, 151, 3);
     --remove-button-color: rgb(223, 78, 0);
@@ -58,7 +62,7 @@ h1 {
     align-items: center;
     justify-content: start;
     overflow: auto;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .row-header {
@@ -116,7 +120,7 @@ h1 {
 }
 
 .first-page-container button, .last-page-container button {
-    background-color: white;
+    background: transparent;
     border: none;
     border-radius: 2px;
     width: 20px;
@@ -129,7 +133,7 @@ h1 {
 }
 
 .first-page-container button:hover, .last-page-container button:hover {
-    background-color: rgb(248, 229, 86);
+    background-color: var(--page-button-hover-color);
 }
 
 img {
@@ -150,8 +154,12 @@ img {
     width: 4px;
 }
 
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+}
+
 ::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 5px rgb(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 5px var(--scrollbar-thumb-color);
 }
 
 
@@ -167,7 +175,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 50px;
     margin-bottom: 30px;
 }
 
