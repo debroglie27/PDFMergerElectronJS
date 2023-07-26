@@ -44,20 +44,15 @@ function createHiddenContainer (record) {
     const hiddenContainer = document.createElement('div');
     hiddenContainer.classList.add('hidden');
 
-    const firstPageConst = document.createElement('p');
-    firstPageConst.classList.add('first-page-const');
-    firstPageConst.textContent = record.firstPage;
-
-    const lastPageConst = document.createElement('p');
-    lastPageConst.classList.add('last-page-const');
-    lastPageConst.textContent = record.lastPage;
+    const totalPage = document.createElement('p');
+    totalPage.classList.add('total-page');
+    totalPage.textContent = record.lastPage;
 
     const filePath = document.createElement('p');
     filePath.classList.add('file-path');
     filePath.textContent = record.filePath;
 
-    hiddenContainer.appendChild(firstPageConst);
-    hiddenContainer.appendChild(lastPageConst);
+    hiddenContainer.appendChild(totalPage);
     hiddenContainer.appendChild(filePath);
 
     return hiddenContainer;

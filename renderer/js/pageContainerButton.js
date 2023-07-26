@@ -44,10 +44,10 @@ function increasePageNum (event) {
     // Button belongs to last page container
     else {
         const lastPage = button.parentElement.querySelector('.last-page');
-        const lastPageConst = button.parentElement.parentElement.querySelector('.last-page-const');
+        const totalPage = button.parentElement.parentElement.querySelector('.total-page');
 
         // Making sure last page does not become larger than last page of pdf
-        if (Number(lastPage.textContent) < Number(lastPageConst.textContent)) {
+        if (Number(lastPage.textContent) < Number(totalPage.textContent)) {
             lastPage.textContent = Number(lastPage.textContent) + 1;
         }
     }

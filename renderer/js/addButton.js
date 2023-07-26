@@ -26,11 +26,21 @@ addButton.addEventListener('click', () => {
 
 // Catch the pdf:pageobject event
 ipcRenderer.on("pdf:pageobject", (pdfPageObject) => {
-    for (let i=0; i<filePaths.length; i++) {
-        let newFileObject = {fileName: path.parse(path.basename(filePaths[i])).name, 
-            filePath: filePaths[i], 
-            ...pdfPageObject[i]};
+    // Iterating through every filePath and creating a corresponding table record
+    filePaths.forEach((filePath, index) => {
+        const maxFileNameLength = 42;
+        let fileName = path.parse(path.basename(filePath)).name;
+
+        if (fileName.length > maxFileNameLength) {
+            fileName = fileName.slice(0, maxFileNameLength) + '...';
+        }
+
+        let newFileObject = {
+            fileName: fileName, 
+            filePath: filePath, 
+            ...pdfPageObject[index],
+        };
 
         createRecord(newFileObject);
-    }
+    });
 });
