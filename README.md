@@ -1,6 +1,9 @@
 # PDF Merger
 
-A desktop app to merge pdf files.  
+### Confused with managing PDF files?
+**Here is a solution:** A desktop app to merge pdf files!   
+`MERGE THEM NOW!`  
+
 Created using [ElectronJS](https://www.electronjs.org/).
 
 ## Basic View of App
