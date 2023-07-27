@@ -1,7 +1,7 @@
 # PDF Merger
 
 ### Confused with managing PDF files?
-**Here is a solution:** A desktop app to merge pdf files!   
+**Here is a solution:** A Desktop APP to merge your PDF Files!   
 `MERGE THEM NOW!`  
 
 Created using [ElectronJS](https://www.electronjs.org/).
